@@ -1,0 +1,54 @@
+[workspace]
+members = [
+    "crates/magentadb-cli",
+    "crates/magentadb-core", 
+    "crates/magentadb-crypto"
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Your Name <your.email@example.com>"]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/ndourc/magentadb"
+homepage = "https://github.com/ndourc/magentadb"
+description = "A high-performance, searchable encrypted database"
+keywords = ["database", "encryption", "searchable", "privacy", "security"]
+categories = ["database-implementations", "cryptography", "command-line-utilities"]
+
+[workspace.dependencies]
+# Shared dependencies across the workspace
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+rand = "0.8"
+
+# Crypto dependencies
+chacha20poly1305 = "0.11.0-rc.0"
+
+# CLI dependencies  
+clap = { version = "4.4", features = ["derive"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Core dependencies
+dashmap = "6.1.0"
+
+[profile.release]
+# Optimized release build
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+# Fast development builds
+opt-level = 0
+debug = true
+
+[profile.bench]
+# Optimized for benchmarks
+opt-level = 3
+lto = true
+codegen-units = 1
+debug = false
