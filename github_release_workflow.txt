@@ -72,7 +72,7 @@ jobs:
           - Command-line interface
           - Documentation and examples
           
-          **Full Changelog**: https://github.com/yourusername/magentadb/commits/v${{ steps.get_version.outputs.version }}
+          **Full Changelog**: https://github.com/ndourc/magentadb/commits/v${{ steps.get_version.outputs.version }}
 
   build:
     name: Build for ${{ matrix.os }}
